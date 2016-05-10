@@ -1,0 +1,44 @@
+﻿<%- include('partials/header') %>
+
+<div class="form-container">
+<div class="autentificare">
+<div class="autentificare-text">
+    <h2>Autentificare ca</h2>
+    </div>
+
+
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Student/Profesor
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#">Student</a></li>
+    <li><a href="#">Profesor</a></li>
+  </ul>
+</div>
+</div>
+
+
+    <% if(locals.error) { %>
+        <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+    <% if(locals.success) { %>
+        <div class="alert alert-success"><%= success %></div>
+    <% } %>
+    <form method="post">
+        <div class="form-group">
+            <label for="username">Email</label>
+            <input type="text" name="username" id="username" value="<%= locals.username || '' %>" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="password">Parola</label>
+            <input type="password" name="password" id="password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Autentificare</button>
+            <a href="/register" class="btn btn-link">Inregistrare</a>
+        </div>
+    </form>
+</div>
+<%- include('partials/footer') %>
