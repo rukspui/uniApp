@@ -13,6 +13,23 @@
 		<button class="btn btn-success" ng-click="changeView('agendaDay', 'myCalendar1')">Day</button>
 		<button class="btn btn-success" ng-click="changeView('agendaWeek', 'myCalendar1')">Week</button>
 		<button class="btn btn-success" ng-click="changeView('month', 'myCalendar1')">Month</button>
+        <button ng-click='addEvent(createdEvent)' class="btn btn-primary">add event</button>
+
+
+
+<div class="eventForm_container">
+    <div class='eventForm'>
+        Titlul: <input type="text" ng-model="createdEvent.title" name="titlu">
+        Data de start: <input type="date" ng-model="createdEvent.dateStart" name="data">
+        Data de inceput: <input type="date" ng-model="createdEvent.dateEnd" name="data">
+
+        <p ng-show="eventInvalid === true">Please fill out all required fields</p>
+
+       
+    </div>
+</div>
+
+
 	</div>
 	<div ui-calendar ng-model="eventSources" calendar="myCalendar1"></div>
 </div>

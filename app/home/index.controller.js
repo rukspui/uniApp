@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .controller('Home.IndexController', ['$scope', 'UserService', 'uiCalendarConfig', function($scope, UserService, uiCalendarConfig) {
+        .controller('Home.IndexController', ['$scope', 'UserService', 'uiCalendarConfig', 'CalendarService', function($scope, UserService, uiCalendarConfig, CalendarService) {
             $scope.user = null;
 
             initController();
@@ -31,7 +31,7 @@
               {title: 'All Day Event',start: new Date(y, m, 1)},
               {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
               {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
-              {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
+              {id: 998,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
               {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
               {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
             ];
@@ -140,6 +140,49 @@
             };
             /* event sources array*/
             $scope.eventSources = [$scope.events, $scope.eventsF];
+
+            // View functions
+            $scope.createdEvent = {};
+
+            $scope.addEvent = function(eventData) {
+              if(eventData.title && eventData.dateStart && eventData.dateEnd) {
+                $scope.eventInvalid = false;
+                
+                var requestBody = {
+                  title: eventData.title,
+                  start: new Date(eventData.dateStart),
+                  end: new Date(eventData.dateEnd)
+                }
+
+                CalendarService.createEvent(requestBody).then(
+                  function(response) {
+                    $scope.events.push(requestBody);
+                    
+                }, 
+                  function(error) {
+
+                  });
+                //todo: move getAllEvents request to other function. And put the result in $scope.events
+                CalendarService.getAllEvents().then(
+                  function(response) {
+                    console.log(response);
+                  },
+                  function() {
+
+                  });
+
+                eventData.title = null;
+                eventData.dateStart = null;
+                eventData.dateEnd = null;
+              } else {
+                $scope.eventInvalid = true;
+              }
+
+            }
+
+
+
         }]);
+
 
 })();

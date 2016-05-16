@@ -9,57 +9,54 @@ db.bind('events');
 
 var service = {};
 
-service.authenticate = authenticate;
-service.getById = getById;
+service.getAllEvents = getAllEvents;
 service.create = create;
-service.update = update;
-service.delete = _delete;
+// service.update = update;
+// service.delete = _delete;
 
 module.exports = service;
 
+function getAllEvents() {
+    var deferred = Q.defer();
+
+    // setTimeout(function() {
+    // 	deferred.resolve({id: _.uniqueId(), data: "test data"});
+    // }, 1000);
+
+    db.events.find(
+            {},
+            {},
+            function (err, doc) {
+                if (err) {
+                    console.log('db fail', err);
+                    deferred.reject(err);
+                }
+                // console.log('db ok!', doc);
+                deferred.resolve(doc);
+            });
+
+    return deferred.promise;
+}
+
+function create(eventParam) {
+    var deferred = Q.defer();
+
+    // validation
+	createEvent();
 
 
+    function createEvent() {
+        db.events.insert(
+            eventParam,
+            function (err, doc) {
+                if (err) {
+                    console.log('db post fail!', err);
+                    deferred.reject(err);
+                }
 
+                deferred.resolve();
+            });
+    }
 
-app.get('/data', function(req, res){
-	db.event.find().toArray(function(err, data){
-		//set id property for all records
-		for (var i = 0; i < data.length; i++)
-			data[i].id = data[i]._id;
-		
-		//output response
-		res.send(data);
-	});
-});
-
-
-app.post('/data', function(req, res){
-	var data = req.body;
-	var mode = data["!nativeeditor_status"];
-	var sid = data.id;
-	var tid = sid;
-
-	delete data.id;
-	delete data.gr_id;
-	delete data["!nativeeditor_status"];
-
-
-	function update_response(err, result){
-		if (err)
-			mode = "error";
-		else if (mode == "inserted")
-			tid = data._id;
-
-		res.setHeader("Content-Type","text/xml");
-		res.send("<data><action type='"+mode+"' sid='"+sid+"' tid='"+tid+"'/></data>");
-	}
-
-	if (mode == "updated")
-		db.event.updateById( sid, data, update_response);
-	else if (mode == "inserted")
-		db.event.insert(data, update_response);
-	else if (mode == "deleted")
-		db.event.removeById( sid, update_response);
-	else
-		res.send("Not supported operation");
-});
+    return deferred.promise;
+}
