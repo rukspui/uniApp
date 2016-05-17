@@ -26,6 +26,32 @@
 
             };
 
+
+
+
+
+
+       /*     this.updateEvent = function(eventData) {
+                var deferred = $q.defer();
+                $http({
+                	url: apiUrl + '/update',
+                	method: 'PUT',
+                	data: {body: eventData}
+                }).then(
+                //on succes
+                function(response) {
+                	deferred.resolve(response);
+                }, 
+                //on reject
+                function() {
+                	deferred.reject();
+                });
+
+                return deferred.promise;
+
+            };
+
+
             this.getAllEvents = function() {
             	var deferred = $q.defer();
                 $http({
@@ -42,7 +68,33 @@
                 });
 
                 return deferred.promise;
-            }
+            };
+
+
+
+            this.deleteEvent = function(eventData) {
+                var deferred = $q.defer();
+                $http({
+                	url: apiUrl + '/delete',
+                	method: 'DELETE',
+                	data: {body: eventData}
+                }).then(
+                //on succes
+                function(response) {
+                	deferred.resolve(response);
+                }, 
+                //on reject
+                function() {
+                	deferred.reject();
+                });
+
+                return deferred.promise;
+
+            };
+
+
+*/
+
         }]);
 
     

@@ -1,4 +1,7 @@
 ﻿<h1>Salut, {{user.firstName}}!</h1>
+
+
+
 <div class="calendar">
 	<div>
 
@@ -10,10 +13,79 @@
             </div>
 
 
-		<button class="btn btn-success" ng-click="changeView('agendaDay', 'myCalendar1')">Day</button>
-		<button class="btn btn-success" ng-click="changeView('agendaWeek', 'myCalendar1')">Week</button>
-		<button class="btn btn-success" ng-click="changeView('month', 'myCalendar1')">Month</button>
+		<button class="btn btn-primary" ng-click="changeView('agendaDay', 'myCalendar1')">Day</button>
+		<button class="btn btn-primary" ng-click="changeView('agendaWeek', 'myCalendar1')">Week</button>
+		<button class="btn btn-primary" ng-click="changeView('month', 'myCalendar1')">Month</button>
         <button ng-click='addEvent(createdEvent)' class="btn btn-primary">add event</button>
+        <button ng-click='deleteEvent(createdEvent)' class="btn btn-primary">delete event</button>
+
+
+
+
+
+
+
+<div class="eventForm_container">
+    <div class='eventForm'>
+
+
+
+<div class="container">
+
+  <div class='col-md-3'>
+   <div class="form-group">
+<label for="titlu">Titlul</label>
+            <input type="text" id="titlu" class="form-control"  required />
+            </div>
+            </div>
+
+
+
+    <div class='col-md-3'>
+        <div class="form-group">
+        <label>Data de inceput</label>
+            <div class='input-group date' id='datetimepicker6'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='col-md-3'>
+        <div class="form-group">
+        <label>Data de sfarsit</label>
+            <div class='input-group date' id='datetimepicker7'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+<div class="buttonCenter">
+    <div class='col-md-3'>
+     <div class="form-group">
+    <button ng-click='addEvent(createdEvent)' class="btn btn-primary">Adauga eveniment</button>
+    </div>
+    </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+</div>
+</div>
+
 
 
 
@@ -24,40 +96,18 @@
         Data de inceput: <input type="date" ng-model="createdEvent.dateEnd" name="data">
 
         <p ng-show="eventInvalid === true">Please fill out all required fields</p>
-
-       
+    
     </div>
 </div>
+    </div>
 
 
-	</div>
+
 	<div ui-calendar ng-model="eventSources" calendar="myCalendar1"></div>
 </div>
 
 
-            <div class="well">
-                <div class="row-fluid">
-                    <div class="span4">
-                        <h3>Adauga</h3>
-
-                        <p>Adauga evenimente personale</p>
-                        <p>Aranjeaza-le asa cum doresti!</p>
-
-                        <h3>Sterge</h3>
-
-                        <p>Why Not?</p>
-                        
-                        <div class="btn-group calTools">
-                          <button class="btn" ng-click="changeLang()">
-                            {{changeTo}}
-                          </button>              
-                          <button class="btn" ng-click="addRemoveEventSource(eventSources,eventSource)">
-                            Toggle Source
-                          </button>
-                          <button type="button" class="btn btn-primary" ng-click="addEvent()">
-                            Add Event
-                          </button>
-                        </div>
+  
 
 
                         <ul class="unstyled">

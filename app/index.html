@@ -20,14 +20,14 @@
     </div>
 
         <ul class="nav nav-tabs">
-            <li ng-class="{active: activeTab === 'home'}"><a ui-sref="home">Home</a></li>
+            <li ng-class="{active: activeTab === 'home'}"><a ui-sref="home">Acasă</a></li>
             <li ng-class="{active: activeTab === 'profil'}"><a ui-sref="profil">Profil</a></li>
 
         <li ng-class="{active: activeTab === 'servicii'}"><a ui-sref="servicii">Servicii</a></li>
 
 <div  class="login-tab">
 
-            <li><a href="/login" target="_self">Logout</a> </li>
+            <li><a href="/login" target="_self">Deconectare</a> </li>
         </ul>
         <div class="flash-message" ng-if="flash">
             <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
@@ -46,7 +46,9 @@
 
     <!-- external scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+   <script   src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"   integrity="sha256-0vBSIAi/8FxkNOSKyPEfdGQzFDak1dlqFKBYqBp1yC4="   crossorigin="anonymous"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
     
 
@@ -62,6 +64,28 @@
     <script src="components/ui-calendar-master/src/calendar.js"></script>
     <script src="libs/moment.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.min.js"></script>
+
+
+
+<!--
+    <script type="text/javascript">
+    $(function () {
+        $('#datetimepicker6').datetimepicker();
+        $('#datetimepicker7').datetimepicker({
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script>
+
+-->
+
+
    
 </body>
 </html>

@@ -6,8 +6,8 @@ var eventService = require('services/event.service');
 // routes
 router.post('/add', addEvent);
 router.get('/getEvents', getAllEvents);
-// router.put('/:_id', updateEvent);
-// router.delete('/:_id', deleteEvent);
+router.put('/update', updateEvent);
+router.delete('/delete', deleteEvent);
 
 module.exports = router;
 
@@ -34,3 +34,26 @@ function getAllEvents(req, res) {
             res.status(400).send(err);
         });
 }
+
+
+function updateEvent(req, res) {
+    eventService.create(req.body)
+        .then(function () {
+            res.sendStatus(200);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+
+function deleteEvent(req, res) {
+    eventService.delete(req.body)
+        .then(function () {
+            res.sendStatus(200);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+

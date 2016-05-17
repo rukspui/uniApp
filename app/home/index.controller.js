@@ -162,8 +162,10 @@
                   function(error) {
 
                   });
+
+
                 //todo: move getAllEvents request to other function. And put the result in $scope.events
-                CalendarService.getAllEvents().then(
+               CalendarService.getAllEvents().then(
                   function(response) {
                     console.log(response);
                   },
@@ -179,6 +181,35 @@
               }
 
             }
+
+
+
+                /*$scope.getAllEvents = function (){
+
+                if(eventData.title && eventData.dateStart && eventData.dateEnd) {
+                $scope.eventInvalid = false;
+                
+                var requestBody = {
+                  title: eventData.title,
+                  start: new Date(eventData.dateStart),
+                  end: new Date(eventData.dateEnd)
+                }
+
+                  CalendarService.getAllEvents().then(
+                  function(response) {
+                    console.log(response);
+                  },
+                  function() {
+
+                  });
+
+                }*/
+
+
+
+
+
+
 
 
 

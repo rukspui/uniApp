@@ -32,29 +32,9 @@
                 controllerAs: 'vm',
                 data: { activeTab: 'servicii' }
 
-            })
-            
-                .state('studenti', {
-                url: '/studenti',
-                templateUrl: 'studenti/index.html',
-                controller: 'Studenti.IndexController',
-                controllerAs: 'vm',
-                data: { activeTab: 'studenti' }
-            })
-                .state('profesori', {
-                url: '/profesori',
-                templateUrl: 'profesori/index.html',
-                controller: 'Profesori.IndexController',
-                controllerAs: 'vm',
-                data: { activeTab: 'profesori' }
-            })
-             .state('asii', {
-                url: '/asii',
-                templateUrl: 'asii/index.html',
-                controller: 'Asii.IndexController',
-                controllerAs: 'vm',
-                data: { activeTab: 'asii' }
             });
+            
+              
 
 
     }
