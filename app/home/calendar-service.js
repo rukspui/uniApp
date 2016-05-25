@@ -31,7 +31,7 @@
 
 
 
-       /*     this.updateEvent = function(eventData) {
+       this.updateEvent = function(eventData) {
                 var deferred = $q.defer();
                 $http({
                 	url: apiUrl + '/update',
@@ -51,7 +51,7 @@
 
             };
 
-
+    
             this.getAllEvents = function() {
             	var deferred = $q.defer();
                 $http({
@@ -93,7 +93,7 @@
             };
 
 
-*/
+
 
         }]);
 

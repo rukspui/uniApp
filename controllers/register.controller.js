@@ -23,10 +23,10 @@ router.post('/', function (req, res) {
                 error: response.body,
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
-                email: req.body.email
-                //functia: req.body.functia,
-                //an: req.body.an,
-                //grupa: req.body.grupa
+                email: req.body.email,
+                functia: req.body.functia,
+                an: req.body.an,
+                grupa: req.body.grupa
             });
         }
 

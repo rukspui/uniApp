@@ -6,9 +6,6 @@
     <h2>Autentificare ca</h2>
     </div>
 
-
-
-
     <% if(locals.error) { %>
         <div class="alert alert-danger"><%= error %></div>
     <% } %>
@@ -16,15 +13,15 @@
         <div class="alert alert-success"><%= success %></div>
     <% } %>
     <form method="post">
-        <div class="form-group">
+        <div class="form-group" name="functia" id="functia">
             <select class="form-control">
             <option value="functia">Student</option>
             <option value="functia">Profesor</option>
             </select>
             </div>
     <div class="form-group">
-            <label for="username">Email</label>
-            <input type="text" name="username" id="username" value="<%= locals.username || '' %>" class="form-control" />
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" value="<%= locals.email || '' %>" class="form-control" />
         </div>
         <div class="form-group">
             <label for="password">Parola</label>

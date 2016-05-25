@@ -66,7 +66,7 @@ function getAllEvents() {
 }
 
 
-/*function update(eventParam) {
+function update(eventParam) {
     var deferred = Q.defer();
 
     // validation
@@ -84,14 +84,14 @@ function getAllEvents() {
 
                 deferred.resolve();
             });
-            )
+            
     }
 
     return deferred.promise;
 }
 
 
-
+/*
 
 function delete(eventParam) {
     var deferred = Q.defer();
@@ -111,7 +111,7 @@ function delete(eventParam) {
 
                 deferred.resolve();
             });
-            )
+            
     }
 
     return deferred.promise;

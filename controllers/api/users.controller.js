@@ -13,7 +13,7 @@ router.delete('/:_id', deleteUser);
 module.exports = router;
 
 function authenticateUser(req, res) {
-    userService.authenticate(req.body.username, req.body.password)
+    userService.authenticate(req.body.functia, req.body.email, req.body.password)
         .then(function (token) {
             if (token) {
                 // authentication successful
@@ -56,7 +56,7 @@ function updateUser(req, res) {
     var userId = req.user.sub;
     if (req.params._id !== userId) {
         // can only update own account
-        return res.status(401).send('You can only update your own account');
+        return res.status(401).send('Poti actualiza doar contul personal');
     }
 
     userService.update(userId, req.body)
@@ -72,7 +72,7 @@ function deleteUser(req, res) {
     var userId = req.user.sub;
     if (req.params._id !== userId) {
         // can only delete own account
-        return res.status(401).send('You can only delete your own account');
+        return res.status(401).send('Poti sterge doar contul personal');
     }
 
     userService.delete(userId)

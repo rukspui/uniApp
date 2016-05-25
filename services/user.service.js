@@ -17,10 +17,10 @@ service.delete = _delete;
 
 module.exports = service;
 
-function authenticate(username, password) {
+function authenticate(functia, email, password) {
     var deferred = Q.defer();
 
-    db.users.findOne({ username: username }, function (err, user) {
+    db.users.findOne({ email: email }, function (err, user) {
         if (err) deferred.reject(err);
 
         if (user && bcrypt.compareSync(password, user.hash)) {
@@ -58,13 +58,13 @@ function create(userParam) {
 
     // validation
     db.users.findOne(
-        { username: userParam.username },
+        { email: userParam.email },
         function (err, user) {
             if (err) deferred.reject(err);
 
             if (user) {
-                // username already exists
-                deferred.reject('Username "' + userParam.username + '" is already taken');
+                // email already exists
+                deferred.reject('Email "' + userParam.email + '" is already taken');
             } else {
                 createUser();
             }
@@ -96,16 +96,16 @@ function update(_id, userParam) {
     db.users.findById(_id, function (err, user) {
         if (err) deferred.reject(err);
 
-        if (user.username !== userParam.username) {
+        if (user.email !== userParam.email) {
             // username has changed so check if the new username is already taken
             db.users.findOne(
-                { username: userParam.username },
+                { email: userParam.email },
                 function (err, user) {
                     if (err) deferred.reject(err);
 
                     if (user) {
-                        // username already exists
-                        deferred.reject('Username "' + req.body.username + '" is already taken')
+                        // email already exists
+                        deferred.reject('Email "' + req.body.email + '" is already taken')
                     } else {
                         updateUser();
                     }

@@ -182,9 +182,9 @@
 
             }
 
+/* 
 
-
-                /*$scope.getAllEvents = function (){
+                $scope.getAllEvents = function (){
 
                 if(eventData.title && eventData.dateStart && eventData.dateEnd) {
                 $scope.eventInvalid = false;
@@ -197,20 +197,22 @@
 
                   CalendarService.getAllEvents().then(
                   function(response) {
-                    console.log(response);
+                    $scope.events.push(requestBody);
                   },
-                  function() {
+                  function(error) {
 
                   });
 
-                }*/
 
+                eventData.title = null;
+                eventData.dateStart = null;
+                eventData.dateEnd = null;
+              } else {
+                $scope.eventInvalid = true;
+              }
 
-
-
-
-
-
+                }
+*/
 
 
         }]);
