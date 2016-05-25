@@ -58,7 +58,7 @@ function getAllEvents() {
                     console.log('db fail', err);
                     deferred.reject(err);
                 }
-                // console.log('db ok!', doc);
+                console.log('db ok!', doc);
                 deferred.resolve(doc);
             });
 

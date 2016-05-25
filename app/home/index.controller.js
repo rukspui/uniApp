@@ -182,40 +182,34 @@
 
             }
 
-/* 
+ 
 
-                $scope.getAllEvents = function (){
-
-                if(eventData.title && eventData.dateStart && eventData.dateEnd) {
-                $scope.eventInvalid = false;
-                
-                var requestBody = {
-                  title: eventData.title,
-                  start: new Date(eventData.dateStart),
-                  end: new Date(eventData.dateEnd)
-                }
+              $scope.getAllEvents = function (){
 
                   CalendarService.getAllEvents().then(
                   function(response) {
-                    $scope.events.push(requestBody);
+                    $scope.events = requestBody;
                   },
                   function(error) {
 
                   });
-
-
-                eventData.title = null;
-                eventData.dateStart = null;
-                eventData.dateEnd = null;
-              } else {
-                $scope.eventInvalid = true;
               }
 
-                }
-*/
+// datepicker hooks
 
+            setTimeout(function() {
+              var dateConfig = {
+                        format: 'DD.MM.YYYY'
+                    };
+
+              $('#startDate').datetimepicker(dateConfig).on('dp.change', function(date) {
+                $scope.createdEvent.dateStart = date.date;
+              });
+              $('#endDate').datetimepicker(dateConfig).on('dp.change', function(date) {
+                $scope.createdEvent.dateEnd = date.date;
+              });;
+            }, 1000);
 
         }]);
-
 
 })();

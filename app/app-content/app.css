@@ -119,3 +119,8 @@ a:hover {
         padding: 20px 0;
     }
 
+input.ellipsis-formatting {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

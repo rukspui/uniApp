@@ -28,14 +28,12 @@
 <div class="eventForm_container">
     <div class='eventForm'>
 
-
-
 <div class="container">
 
   <div class='col-md-3'>
    <div class="form-group">
 <label for="titlu">Titlul</label>
-            <input type="text" id="titlu" class="form-control"  required />
+            <input type="text" id="titlu" class="form-control" ng-model="createdEvent.title" required />
             </div>
             </div>
 
@@ -44,8 +42,8 @@
     <div class='col-md-3'>
         <div class="form-group">
         <label>Data de inceput</label>
-            <div class='input-group date' id='datetimepicker6'>
-                <input type='text' class="form-control" />
+            <div class='input-group date' id='startDate'>
+                <input type='text' class="form-control ellipsis-formatting" ng-model="createdEvent.dateStart"/>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -57,8 +55,8 @@
     <div class='col-md-3'>
         <div class="form-group">
         <label>Data de sfarsit</label>
-            <div class='input-group date' id='datetimepicker7'>
-                <input type='text' class="form-control" />
+            <div class='input-group date' id='endDate'>
+                <input type='text' class="form-control ellipsis-formatting" ng-model="createdEvent.dateEnd"/>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -91,9 +89,9 @@
 
 <div class="eventForm_container">
     <div class='eventForm'>
-        Titlul: <input type="text" ng-model="createdEvent.title" name="titlu">
+       <!--  Titlul: <input type="text" ng-model="createdEvent.title" name="titlu">
         Data de start: <input type="date" ng-model="createdEvent.dateStart" name="data">
-        Data de inceput: <input type="date" ng-model="createdEvent.dateEnd" name="data">
+        Data de inceput: <input type="date" ng-model="createdEvent.dateEnd" name="data"> -->
 
         <p ng-show="eventInvalid === true">Please fill out all required fields</p>
     
@@ -110,18 +108,20 @@
   
 
 
-                        <ul class="unstyled">
-                            <li ng-repeat="e in events">
-                                <div class="alert alert-info">
-                                    <a class="close" ng-click="remove($index)"><i class="icon-remove"></i></a>
-                                    <b> <input ng-model="e.title"></b> 
-                                    {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
-                                </div>
-                            </li>
-                        </ul>
+<ul class="unstyled">
+    <li ng-repeat="e in events">
+        <div class="alert alert-info">
+            <a class="close" ng-click="remove($index)"><i class="icon-remove"></i></a>
+            <b> <input ng-model="e.title"></b> 
+            {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
+        </div>
+    </li>
+</ul>
 
-                    </div>
+</div>
 
+<!-- Initializing date-pickers -->
+ <script>
+ 
 
-
-                    
+ </script>
