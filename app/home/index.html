@@ -1,127 +1,159 @@
-﻿<h1>Salut, {{user.firstName}}!</h1>
+﻿<div class="welcome">
+    <h1>Salut, {{user.firstName}}!</h1>
+    <h4>Acesta este contul tău de {{user.functia}}.</h4>
+</div>
+
+
 
 
 
 <div class="calendar">
-	<div>
+    <div>
 
 
 
 
-    <div class="page-header">
-                <h1>Calendar FII</h1>
-            </div>
+        <div class="page-header">
+            <h1>Calendar FII</h1>
+        </div>
 
+        <div class="viewButtons">
+            <button class="btn btn-primary" ng-click="changeView('agendaDay', 'myCalendar1')">Zi</button>
+            <button class="btn btn-primary" ng-click="changeView('agendaWeek', 'myCalendar1')">Săptămână</button>
+            <button class="btn btn-primary" ng-click="changeView('month', 'myCalendar1')">Lună</button>
 
-		<button class="btn btn-primary" ng-click="changeView('agendaDay', 'myCalendar1')">Zi</button>
-		<button class="btn btn-primary" ng-click="changeView('agendaWeek', 'myCalendar1')">Săptămână</button>
-		<button class="btn btn-primary" ng-click="changeView('month', 'myCalendar1')">Lună</button>
-        <button ng-click='addEvent(createdEvent)' class="btn btn-primary">add event</button>
-        <button ng-click='deleteEvent(createdEvent)' class="btn btn-primary">delete event</button>
+            <!--  <button ng-click='deleteEvent(createdEvent)' class="btn btn-primary">delete event</button> -->
 
-
-
-
-
-
-
-<div class="eventForm_container">
-    <div class='eventForm'>
-
-<div class="container">
-
-  <div class='col-md-3'>
-   <div class="form-group">
-<label for="titlu">Titlul</label>
-            <input type="text" id="titlu" class="form-control" ng-model="createdEvent.title" required />
-            </div>
-            </div>
+        </div>
 
 
 
-    <div class='col-md-3'>
-        <div class="form-group">
-        <label>Data de inceput</label>
-            <div class='input-group date' id='startDate'>
-                <input type='text' class="form-control ellipsis-formatting" ng-model="createdEvent.dateStart"/>
-                <span class="input-group-addon">
+
+
+        <div ui-calendar ng-model="eventSources" calendar="myCalendar1"></div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="eventForm_container">
+        <div class='eventForm'>
+
+            <div class="container">
+
+                <div class='col-md-2'>
+                    <div class="form-group">
+                        <label for="titlu">Titlul</label>
+                        <input type="text" id="titlu" class="form-control" ng-model="createdEvent.title" required />
+                    </div>
+                </div>
+
+
+                <div class='col-md-2'>
+                    <div class="form-group">
+                        <label for="type">Tip Eveniment</label>
+                        <select type="text" id="type" class="form-control" ng-model="createdEvent.type" required>
+                            <option value="Personal">Personal</option>
+                            <option value="Public">Public</option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+
+                <div class='col-md-3'>
+                    <div class="form-group">
+                        <label>Data de inceput</label>
+                        <div class='input-group date' id='startDate'>
+                            <input type='text' class="form-control ellipsis-formatting" ng-model="createdEvent.dateStart" />
+                            <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class='col-md-3'>
+                    <div class="form-group">
+                        <label>Data de sfarsit</label>
+                        <div class='input-group date' id='endDate'>
+                            <input type='text' class="form-control ellipsis-formatting" ng-model="createdEvent.dateEnd" />
+                            <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buttonCenter">
+                    <div class='col-md-2'>
+                        <div class="form-group">
+                            <button ng-click='addEvent(createdEvent)' class="btn btn-primary">Adauga eveniment</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
+
         </div>
     </div>
 
 
-    <div class='col-md-3'>
-        <div class="form-group">
-        <label>Data de sfarsit</label>
-            <div class='input-group date' id='endDate'>
-                <input type='text' class="form-control ellipsis-formatting" ng-model="createdEvent.dateEnd"/>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+
+    <div class="eventForm_container">
+        <div class='eventForm'>
+
+            <div class="alert alert-danger fade in" ng-show="eventInvalid === true" role="alert">
+                <a class="close" onclick="$('.alert-danger').hide()">×</a>
+                <strong>Completează toate câmpurile!</strong>
             </div>
+
+            <div class="alert alert-success fade in" ng-show="eventInvalid === false" role="alert">
+                <a class="close" onclick="$('.alert-success').hide()">×</a>
+                <strong>Eveniment adăugat cu succes!</strong>
+            </div>
+
         </div>
     </div>
-
-<div class="buttonCenter">
-    <div class='col-md-3'>
-     <div class="form-group">
-    <button ng-click='addEvent(createdEvent)' class="btn btn-primary">Adauga eveniment</button>
-    </div>
-    </div>
-    </div>
-
 </div>
 
 
 
 
+<div class="TODO-list">
+<div class="TODO col-md-6">
+ <div class="TODO-list-header">
+            <h1>TODOs:</h1>
+        </div>
 
-
-
-
-</div>
-</div>
-
-
-
-
-<div class="eventForm_container">
-    <div class='eventForm'>
-       <!--  Titlul: <input type="text" ng-model="createdEvent.title" name="titlu">
-        Data de start: <input type="date" ng-model="createdEvent.dateStart" name="data">
-        Data de inceput: <input type="date" ng-model="createdEvent.dateEnd" name="data"> -->
-
-        <p ng-show="eventInvalid === true">Please fill out all required fields</p>
-    
-    </div>
-</div>
-    </div>
-
-
-
-	<div ui-calendar ng-model="eventSources" calendar="myCalendar1"></div>
-</div>
-
-
-  
-
-
-<ul class="unstyled">
-    <li ng-repeat="e in events">
-        <div class="alert alert-info">
-            <a class="close" ng-click="remove($index)"><i class="icon-remove"></i></a>
-            <b> <input ng-model="e.title"></b> 
-            {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
+<ul class="list_events">
+    <li ng-repeat="e in events" ng-show="e.type === 'Personal'">
+        <div class="alert alert-info fade in" role="alert">
+            {{e.id}}
+            <a class="close" ng-click="remove($index, e.id)">×</a>
+            <b> <input ng-model="e.title"></b> {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
+            <span>Type {{e.type}}</span>
         </div>
     </li>
 </ul>
+</div>
+
+
+<div class="DONE col-md-6">
+ <div class="TODO-list-header">
+            <h1>DONEs:</h1>
+        </div>
+        </div>
+
+
 
 </div>
 
-<!-- Initializing date-pickers -->
- <script>
- 
-
- </script>
+</div>

@@ -12,7 +12,7 @@ var service = {};
 service.getAllEvents = getAllEvents;
 service.create = create;
 //service.update = update;
-//service.delete = delete;
+service.removeEvent = removeEvent;
 
 module.exports = service;
 
@@ -46,21 +46,15 @@ function create(eventParam) {
 function getAllEvents() {
     var deferred = Q.defer();
 
-    // setTimeout(function() {
-    //  deferred.resolve({id: _.uniqueId(), data: "test data"});
-    // }, 1000);
+    var events = db.collection('events');
+    events.find({}).toArray(function (err, res){
+        if (err){
+            deferred.reject(err);
 
-    db.events.find(
-            {},
-            {},
-            function (err, doc) {
-                if (err) {
-                    console.log('db fail', err);
-                    deferred.reject(err);
-                }
-                console.log('db ok!', doc);
-                deferred.resolve(doc);
-            });
+        } else if (res.length){
+            deferred.resolve(res);
+        }
+    })
 
     return deferred.promise;
 }
@@ -88,31 +82,32 @@ function update(eventParam) {
     }
 
     return deferred.promise;
+
 }
 
 
-/*
-
-function delete(eventParam) {
+function removeEvent(id) {
     var deferred = Q.defer();
 
     // validation
-    deleteEvent();
+    deleteEvent(id);
 
 
-    function deleteEvent() {
-        db.events.remove(
-            eventParam,
-            function (err, doc) {
+    function deleteEvent(id) {
+        var _id = id;
+        console.log(JSON.stringify(_id, null, '\t')); 
+        db.collection('events').remove(
+            { "_id": mongo.helper.toObjectID(id) },
+            function (err, res) {
                 if (err) {
-                    console.log('db post fail!', err);
                     deferred.reject(err);
+                    console.log(err)
                 }
-
-                deferred.resolve();
+                deferred.resolve(res);
             });
             
     }
 
     return deferred.promise;
-}*/
+}
+

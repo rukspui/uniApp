@@ -72,12 +72,11 @@
 
 
 
-            this.deleteEvent = function(eventData) {
+            this.deleteEvent = function(id) {
                 var deferred = $q.defer();
                 $http({
-                	url: apiUrl + '/delete',
-                	method: 'DELETE',
-                	data: {body: eventData}
+                	url: apiUrl + '/delete/' + id,
+                	method: 'DELETE'
                 }).then(
                 //on succes
                 function(response) {

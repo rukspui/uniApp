@@ -124,3 +124,35 @@ input.ellipsis-formatting {
     overflow: hidden;
     white-space: nowrap;
 }
+
+.viewButtons {
+    padding-bottom:30px;
+}
+
+.welcome {
+    padding: 20px 0 30px 0;
+}
+
+
+.ng-scope {
+    list-style-type: none;
+        
+}
+.list_events {
+padding-left: 0px;
+
+}
+
+/*** Calendar ***/
+
+.fc-event {
+    background: none !important;
+    }
+
+.fc-content {
+    background: #337ab7 !important;
+    color: white !important;
+    }
+
+
+

@@ -1,0 +1,26 @@
+{
+	title: 'Title',
+	type: 'personal | public',
+	startDate: 13465765,
+	endDate: 1354356,
+	userId: 'a5a89767sdsds112sfdf'
+}
+
+{
+	title: 'Title',
+	type: 'public',
+	startDate: 13465765,
+	endDate: 1354356,
+	userId: 'a5a89767sdsds112sfdf',
+	availableFor: {
+		year: 1,
+		groups: ['sdaa', 'sadsad']
+	}
+}
+
+{
+	_id: '4546546',
+	name: 'ruks',
+	group: 2x100,
+	year: 2
+}

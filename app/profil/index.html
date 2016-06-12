@@ -3,7 +3,7 @@
     <form method="post">
         <div class="form-group">
             <label for="firstName">Prenume</label>
-            <input type="text" id="firstName" class="form-control" ng-model="vm.user.firstName" required />
+            <input type="text" id="firstName" class="form-control" ng-model="vm.user.firstName" value="user.firstName" readonly />
         </div>
         <div class="form-group">
             <label for="lastName">Nume</label>
@@ -17,7 +17,7 @@
 
   <div class="form-group">
 <label for="an">An</label>
-<select class="form-control" ng-model="vm.user.an" required >
+<select class="form-control" ng-model="vm.user.an" value="user.an" required >
         <option value="an">L1</option>
         <option value="an">L2</option>
         <option value="an">L3</option>

@@ -9,8 +9,45 @@ router.post('/register', registerUser);
 router.get('/current', getCurrentUser);
 router.put('/:_id', updateUser);
 router.delete('/:_id', deleteUser);
+router.get('/all', getAllUsers);
 
 module.exports = router;
+
+function getAllUsers(req, res) {
+    userService.getAll()
+    .then(function (users) {
+        var users = {
+            profesori: _.filter(users, function (u) {
+                return u.functia  === 'profesor';
+            }),
+            studenti: {
+              
+                L2: {
+                    A1: [],
+                    A2: [],
+                    A3: [],
+                    A4: [],
+                    A5: [],
+                    A6: [],
+                    A7: [],
+                    A8: [],
+                    B1: [],
+                    B2: [],
+                    B3: [],
+                    B4: [],
+                    B5: [],
+                    B6: [],
+                    B7: [],
+                    B8: [],
+                }
+            }
+        };
+        res.send(users);
+    })
+    .catch(function (error) {
+        res.status(500).send(error);
+    });
+}
 
 function authenticateUser(req, res) {
     userService.authenticate(req.body.functia, req.body.email, req.body.password)
