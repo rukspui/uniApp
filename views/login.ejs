@@ -3,20 +3,21 @@
 <div class="form-container">
 <div class="autentificare">
 <div class="autentificare-text">
-    <h2>Autentificare ca</h2>
-    </div>
-
     <% if(locals.error) { %>
         <div class="alert alert-danger"><%= error %></div>
     <% } %>
     <% if(locals.success) { %>
         <div class="alert alert-success"><%= success %></div>
     <% } %>
+    <h2>Autentificare ca</h2>
+    </div>
+
+
     <form method="post">
         <div class="form-group" name="functia" id="functia">
             <select class="form-control">
-            <option value="functia">Student</option>
-            <option value="functia">Profesor</option>
+            <option value="Student">Student</option>
+            <option value="Profesor">Profesor</option>
             </select>
             </div>
     <div class="form-group">
@@ -29,7 +30,7 @@
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Autentificare</button>
-            <a href="/register" class="btn btn-link">Inregistrare</a>
+            <a href="/register" class="btn btn-link">Înregistare</a>
         </div>
     </form>
 </div>

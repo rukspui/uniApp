@@ -220,6 +220,7 @@
                 $scope.createdEvent = {};
 
                 $scope.addEvent = function(eventData) {
+                    eventData.status = "todo";
                     if (eventData.title && eventData.dateStart &&
                         eventData.dateEnd) {
                         $scope.eventInvalid = false;
@@ -229,6 +230,7 @@
                             start: new Date(eventData.dateStart),
                             end: new Date(eventData.dateEnd),
                             type: eventData.type,
+                            status: eventData.status,
                             userId: UserService.GetCurrent()
                                 //availableFor: 
 
@@ -243,6 +245,9 @@
                                 function(error) {
 
                                 });
+
+
+                          
 
 
                         //todo: move getAllEvents request to other function. And put the result in $scope.events
@@ -263,6 +268,11 @@
                     }
 
                 }
+
+                /* change status from TODO to DONE */
+                 $scope.changeStatus = function(status) {
+                            eventData.status = "done";
+                           } 
 
 
 

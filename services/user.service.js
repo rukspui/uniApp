@@ -77,7 +77,7 @@ function create(userParam) {
 
             if (user) {
                 // email already exists
-                deferred.reject('Email "' + userParam.email + '" is already taken');
+                deferred.reject('Email-ul "' + userParam.email + '" este deja folosit');
             } else {
                 createUser();
             }
@@ -85,7 +85,7 @@ function create(userParam) {
 
     function createUser() {
         // set user object to userParam without the cleartext password
-        var user = _.omit(userParam, 'password');
+        var user = _.omit(userParam, 'parola');
 
         // add hashed password to user object
         user.hash = bcrypt.hashSync(userParam.password, 10);
@@ -118,7 +118,7 @@ function update(_id, userParam) {
 
                     if (user) {
                         // email already exists
-                        deferred.reject('Email "' + req.body.email + '" is already taken')
+                        deferred.reject('Email-ul "' + req.body.email + '" este deja folosit')
                     } else {
                         updateUser();
                     }

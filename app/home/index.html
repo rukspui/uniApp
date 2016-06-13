@@ -68,7 +68,7 @@
 
                 <div class='col-md-3'>
                     <div class="form-group">
-                        <label>Data de inceput</label>
+                        <label>Data de început</label>
                         <div class='input-group date' id='startDate'>
                             <input type='text' class="form-control ellipsis-formatting" ng-model="createdEvent.dateStart" />
                             <span class="input-group-addon">
@@ -81,7 +81,7 @@
 
                 <div class='col-md-3'>
                     <div class="form-group">
-                        <label>Data de sfarsit</label>
+                        <label>Data de şfârsit</label>
                         <div class='input-group date' id='endDate'>
                             <input type='text' class="form-control ellipsis-formatting" ng-model="createdEvent.dateEnd" />
                             <span class="input-group-addon">
@@ -94,7 +94,7 @@
                 <div class="buttonCenter">
                     <div class='col-md-2'>
                         <div class="form-group">
-                            <button ng-click='addEvent(createdEvent)' class="btn btn-primary">Adauga eveniment</button>
+                            <button ng-click='addEvent(createdEvent)' class="btn btn-primary">Adaugă eveniment</button>
                         </div>
                     </div>
                 </div>
@@ -136,24 +136,44 @@
 <ul class="list_events">
     <li ng-repeat="e in events" ng-show="e.type === 'Personal'">
         <div class="alert alert-info fade in" role="alert">
-            {{e.id}}
+        <div class="checkbox-inline">
+            <label><input type="checkbox" value="done">{{e._id}}.</label>
+            </div>
+
+        
             <a class="close" ng-click="remove($index, e.id)">×</a>
-            <b> <input ng-model="e.title"></b> {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
-            <span>Type {{e.type}}</span>
+            <b> <input ng-model= " e.title"></b> {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
+             <!--<span>Type {{e.type}}</span>-->
+
+           
+            <button class="btn btn-primary" ng-click="changeStatus(e.status)">Status</button>
         </div>
     </li>
 </ul>
 </div>
 
 
+
+
 <div class="DONE col-md-6">
  <div class="TODO-list-header">
             <h1>DONEs:</h1>
         </div>
+        <ul class="list_events">
+    <li ng-repeat="e in events" ng-show="e.status === 'done'">
+     <div class="alert alert-info fade in" role="alert">
+      <a class="close" ng-click="remove($index, e.id)">×</a>
+            <b> <input ng-model="e.title"></b> {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
+            </div>
+
+</li>
+</ul>
+
         </div>
 
 
 
 </div>
+
 
 </div>

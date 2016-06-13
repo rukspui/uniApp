@@ -22,11 +22,11 @@ router.post('/', function (req, res) {
         json: true
     }, function (error, response, body) {
         if (error) {
-            return res.render('login', { error: 'An error occurred' });
+            return res.render('login', { error: 'Ooops... a apărut o eroare!' });
         }
 
         if (!body.token) {
-            return res.render('login', { error: 'E-mail or password is incorrect', email: req.body.email });
+            return res.render('login', { error: 'E-mail sau parola sunt incorecte', email: req.body.email });
         }
 
         // save JWT token in the session to make it available to the angular app

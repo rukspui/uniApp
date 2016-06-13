@@ -15,7 +15,7 @@ router.post('/', function (req, res) {
         json: true
     }, function (error, response, body) {
         if (error) {
-            return res.render('register', { error: 'An error occurred' });
+            return res.render('register', { error: 'Ooops... a apărut o eroare!' });
         }
 
         if (response.statusCode !== 200) {
@@ -31,7 +31,7 @@ router.post('/', function (req, res) {
         }
 
         // return to login page with success message
-        req.session.success = 'Registration successful';
+        req.session.success = 'Înregistare efectuată cu succes!';
         return res.redirect('/login');
     });
 });

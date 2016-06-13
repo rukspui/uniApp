@@ -1,9 +1,10 @@
 ﻿<%- include('partials/header') %>
 <div class="form-container">
-    <h2>Inregistrare</h2>
-    <% if(locals.error) { %>
+ <% if(locals.error) { %>
         <div class="alert alert-danger"><%= error %></div>
     <% } %>
+    <h2>Înregistare</h2>
+   
     <form method="post">
         <div class="form-group">
             <label for="firstName">Prenume</label>
@@ -75,7 +76,7 @@
 
         
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Inregistrare</button>
+            <button type="submit" class="btn btn-primary">Înregistare</button>
             <a href="/login" class="btn btn-link">Anulare</a>
         </div>
     </form>
