@@ -36,8 +36,9 @@ function getAllEvents(req, res) {
 }
 
 
-function updateEvent(req, res) {
-    eventService.create(req.body)
+function updateEvent(req, res) { 
+    console.log('body for update', req.body)
+    eventService.update(req.body.body)
         .then(function () {
             res.sendStatus(200);
         })

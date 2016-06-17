@@ -21,13 +21,16 @@ module.exports = service;
 function getAll () {
     var deferred = Q.defer();
 
-    db.users.find(function (err, users) {
-        if (err) {
+    db.collection('users').find({}).toArray(function (err, res){
+        if (err){
             deferred.reject(err);
-        }
 
-        deferred.resolve(users);
+        } else if (res.length){
+            deferred.resolve(res);
+        }
     });
+
+    return deferred.promise;
 }
 
 function authenticate(functia, email, password) {

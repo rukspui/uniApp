@@ -134,19 +134,16 @@
         </div>
 
 <ul class="list_events">
-    <li ng-repeat="e in events" ng-show="e.type === 'Personal'">
+    <li ng-repeat="e in events" ng-show="e.type === 'Personal' && !e.done">
         <div class="alert alert-info fade in" role="alert">
         <div class="checkbox-inline">
-            <label><input type="checkbox" value="done">{{e._id}}.</label>
+            <label><input type="checkbox" ng-model="e.done" ng-click="updateEvent(e)">{{e._id}}.</label>
             </div>
-
         
             <a class="close" ng-click="remove($index, e.id)">×</a>
             <b> <input ng-model= " e.title"></b> {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
              <!--<span>Type {{e.type}}</span>-->
-
-           
-            <button class="btn btn-primary" ng-click="changeStatus(e.status)">Status</button>
+             <button ng-click="updateEvent(e)">Update</button>
         </div>
     </li>
 </ul>
@@ -160,8 +157,9 @@
             <h1>DONEs:</h1>
         </div>
         <ul class="list_events">
-    <li ng-repeat="e in events" ng-show="e.status === 'done'">
+    <li ng-repeat="e in events" ng-show="e.done">
      <div class="alert alert-info fade in" role="alert">
+     <label><input type="checkbox" ng-model="e.done" ng-click="updateEvent(e)">{{e._id}}.</label>
       <a class="close" ng-click="remove($index, e.id)">×</a>
             <b> <input ng-model="e.title"></b> {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
             </div>

@@ -219,53 +219,59 @@
                 // View functions
                 $scope.createdEvent = {};
 
-                $scope.addEvent = function(eventData) {
-                    eventData.status = "todo";
-                    if (eventData.title && eventData.dateStart &&
-                        eventData.dateEnd) {
-                        $scope.eventInvalid = false;
+                $scope.updateEvent = function(eventData) {
 
-                        var requestBody = {
-                            title: eventData.title,
-                            start: new Date(eventData.dateStart),
-                            end: new Date(eventData.dateEnd),
-                            type: eventData.type,
-                            status: eventData.status,
-                            userId: UserService.GetCurrent()
-                                //availableFor: 
-
-                        }
-
-                        CalendarService.createEvent(requestBody)
+                    CalendarService.updateEvent(eventData)
                             .then(
                                 function(response) {
-                                    $scope.getAllEvents();
-
+                                    console.log('shit went great')
                                 },
                                 function(error) {
-
+ 
                                 });
+                }
+
+                $scope.addEvent = function(eventData) {
+                    var currentUserId;
+                    UserService.GetCurrent().then(function(result) {
+                        currentUserId = result._id;
+
+                        eventData.done = false;
+                        if (eventData.title && eventData.dateStart &&
+                            eventData.dateEnd) {
+                            $scope.eventInvalid = false;
+
+                            var requestBody = {
+                                title: eventData.title,
+                                start: new Date(eventData.dateStart),
+                                end: new Date(eventData.dateEnd),
+                                type: eventData.type,
+                                userId: currentUserId,
+                                done: false
+
+                            }
+
+                            CalendarService.createEvent(requestBody)
+                                .then(
+                                    function(response) {
+                                        $scope.getAllEvents();
+
+                                    },
+                                    function(error) {
+
+                                    });
+
+                                eventData.title = null;
+                                eventData.dateStart = null;
+                                eventData.dateEnd = null;
+                            } else {
+                                $scope.eventInvalid = true;
+                            }
 
 
-                          
+                    });
 
-
-                        //todo: move getAllEvents request to other function. And put the result in $scope.events
-                        CalendarService.getAllEvents()
-                            .then(
-                                function(response) {
-                                    console.log(response);
-                                },
-                                function() {
-
-                                });
-
-                        eventData.title = null;
-                        eventData.dateStart = null;
-                        eventData.dateEnd = null;
-                    } else {
-                        $scope.eventInvalid = true;
-                    }
+                    
 
                 }
 
@@ -277,8 +283,10 @@
 
 
                 $scope.getAllEvents = function() {
+                    UserService.GetCurrent().then(function(result) {
+                        var currentUserId = result._id;
 
-                    CalendarService.getAllEvents()
+                        CalendarService.getAllEvents()
                         .then(
                             function(response) {
                                 //$scope.events = requestBody;
@@ -292,18 +300,22 @@
                                 };
 
                                 events.map(function(event) {
-                                    $scope.events.push({
-                                        id: event._id,
-                                        title: event.body.title,
-                                        type: event.body.type,
-                                        start: event.body.start,
-                                        end: event.body.end
-                                    });
-                                })
+                                    if(currentUserId == event.body.userId || event.body.type === 'Public') {
+                                        $scope.events.push({
+                                            id: event._id,
+                                            title: event.body.title,
+                                            type: event.body.type,
+                                            start: event.body.start,
+                                            end: event.body.end,
+                                            done: event.body.done
+                                        });
+                                    }
+                                });
                             },
                             function(error) {
 
                             });
+                    })
 
                 }
                 $scope.getAllEvents();

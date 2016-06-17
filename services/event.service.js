@@ -11,7 +11,7 @@ var service = {};
 
 service.getAllEvents = getAllEvents;
 service.create = create;
-//service.update = update;
+service.update = update;
 service.removeEvent = removeEvent;
 
 module.exports = service;
@@ -60,23 +60,25 @@ function getAllEvents() {
 }
 
 
-function update(eventParam) {
+function update(eventData) {
     var deferred = Q.defer();
 
+    console.log('event-service!!')
     // validation
-    updateEvent();
+    updateEvent(eventData);
 
 
-    function updateEvent() {
-        db.events.update(
-            eventParam,
-            function (err, doc) {
+    function updateEvent(eventData) {
+        console.log('updating event with id: ', eventData.id, 'and done: ', eventData.done);
+        db.collection('events').update(
+            { "_id": mongo.helper.toObjectID(eventData.id) },
+            { $set: { body: eventData } }, function (err, res) {
                 if (err) {
-                    console.log('db post fail!', err);
                     deferred.reject(err);
+                    console.log(err)
                 }
-
-                deferred.resolve();
+                console.log('WORKED!!')
+                deferred.resolve(res);
             });
             
     }

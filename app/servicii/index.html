@@ -55,7 +55,6 @@
                     "_blank"><span class="glyphicon glyphicon-user"></span>
 
                     <h3>Profesori</h3></a>
-
                     <p class="text">Vizualizare profesori</p>
                 </div>
 
@@ -93,9 +92,9 @@
                 <h1>Studenti</h1>
             </li>
 
-
-            <li>{{user.firstName}}</li>
-        </ul>
+            <div class="student" ng-repeat="student in studenti">
+                {{student.firstName}}
+            </div>
     </div>
 </body>
 </html>

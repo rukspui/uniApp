@@ -16,32 +16,7 @@ module.exports = router;
 function getAllUsers(req, res) {
     userService.getAll()
     .then(function (users) {
-        var users = {
-            profesori: _.filter(users, function (u) {
-                return u.functia  === 'profesor';
-            }),
-            studenti: {
-              
-                L2: {
-                    A1: [],
-                    A2: [],
-                    A3: [],
-                    A4: [],
-                    A5: [],
-                    A6: [],
-                    A7: [],
-                    A8: [],
-                    B1: [],
-                    B2: [],
-                    B3: [],
-                    B4: [],
-                    B5: [],
-                    B6: [],
-                    B7: [],
-                    B8: [],
-                }
-            }
-        };
+        console.log('am users!')
         res.send(users);
     })
     .catch(function (error) {

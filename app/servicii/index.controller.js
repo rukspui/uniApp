@@ -4,13 +4,29 @@
     angular
         .module('app')
         .controller('Servicii.IndexController', Controller);
-            $scope.user = null;
 
-            initController();
+    function Controller($scope, UserService) {
 
-            function initController() {
-                // get current user
-                UserService.GetCurrent().then(function (user) {
-                    $scope.user = user;
+
+        function initController() {
+            // get current user
+            UserService.GetAll().then(function (users) {
+                $scope.profesori = users.filter(function(user) {
+                    console.log(user)
+                    return user.functia === 'profesor';
                 });
-            }
+                $scope.studenti = users.filter(function(user) {
+                    return user.functia === 'student';
+                });
+
+                
+
+            });
+        }
+
+        initController();
+
+      
+    }
+
+})();
